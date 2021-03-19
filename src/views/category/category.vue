@@ -1,12 +1,12 @@
 <template>
-    <div id="app">
-        
+    <div>
+          <h2>分类</h2>
     </div>
 </template>
 
 <script>
 export default {
-    name:'tabbar'
+    name:"Categoty"
 }
 </script>
 
