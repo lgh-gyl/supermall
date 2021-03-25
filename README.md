@@ -15,6 +15,7 @@ npm run dev
 npm run build
 
 # build for production and view the bundle analyzer report
+# 为生产环境构建并查看
 npm run build --report
 ```
 

@@ -121,7 +121,7 @@ export default {
 
 <style scoped>
     .centent{
-      height: 44px;
+      height: 440px;
       background-color: red;
       overflow: hidden;
     }

@@ -6,7 +6,7 @@
          ref="scroll" 
           :probe-type="3"
            @scroll="contentScroll"
-           pull-up-load="true"
+            :pull-up-load="true"
            @pullingUp ="loadMopre">
         <home-swiper :banners="banners"/>
         <recommend-view :recommends="recommends"/>
@@ -128,16 +128,15 @@ export default {
                 break
             }
         },
+        //  上拉加载更多
         backClick(){
             // console.log(2222)
             this.$refs.scroll.scrollTo(0,0,2000)
         },
+        // 获取坐标
         contentScroll(position){
-            // console.log(position);
+            console.log(position);
         this.ISshow = (-position.y) >500
-
-
-
         },
         loadMopre(){
             console.log('上拉加载更多');
@@ -159,7 +158,8 @@ export default {
                 this.goods[type].list.push(...res.data.list)
                 this.goods[type].page += 1
 
-                this.$refs.scroll.finishPullup()
+                // this.$refs.scroll.finishPullup()
+            this.$refs.scroll.finishPullup()
             })
          }
         }
