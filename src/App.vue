@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="wrapper">
    <!-- 代码规范 -->
     <!-- <tab-bar>
       <tab-bar-item>

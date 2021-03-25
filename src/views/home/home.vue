@@ -1,37 +1,49 @@
 <template>
-    <div id="home">
-        <nav-bar class="nav-bar"><div slot="center">购物街</div></nav-bar>
+    <div id="home" >
+         <nav-bar class="nav-bar"><div slot="center">购物街</div></nav-bar>
+
+        <scroll class="centent"
+         ref="scroll" 
+          :probe-type="3"
+           @scroll="contentScroll"
+           pull-up-load="true"
+           @pullingUp ="loadMopre">
         <home-swiper :banners="banners"/>
         <recommend-view :recommends="recommends"/>
         <feature-view/>
-        <tab-control class="tab-control" :titles="['流行','新款','精选']" @click="tabclick"/>
+        <tab-control class="tab-control" 
+        :titles="['流行','新款','精选']"
+         @click="tabclick"/>
         <goods-list :goods="showGoods"/>
-        <ul>1</ul>
-        <ul>1</ul>
-        <ul>1</ul>
-        <ul>1</ul>
-        <ul>2</ul>
-        <ul>2</ul>
-        <ul>2</ul>
-        <ul>2</ul>
-        <ul>2</ul>
-        <ul>2</ul>
-        <ul>3</ul>
-        <ul>3</ul>
-        <ul>3</ul>
-        <ul>3</ul>
-        <ul>3</ul>
-        <ul>3</ul>
-        <ul>3</ul>
-        <ul>3</ul>
-        <ul>3</ul>
-        <ul>3</ul>
-        <ul>3</ul>
-        <ul>3</ul>
-        <ul>3</ul>
-        <ul>3</ul>
-        <ul>3</ul>
-        <ul>3</ul>
+        </scroll>
+
+        <!-- 修饰.native什么时候使用
+          .在我们需要监听一个组件的原生事件，必须给对应的事件加上.native修饰符。才能进行监听
+         -->
+
+        <back-top @click.native="backClick"  v-show="ISshow"/>
+        <!-- <ul>
+            <li>列表1</li>
+            <li>列表2</li>
+            <li>列表3</li>
+            <li>列表4</li>
+            <li>列表5</li>
+            <li>列表6</li>
+            <li>列表7</li>
+            <li>列表8</li>
+            <li>列表9</li>
+            <li>列表10</li>
+            <li>列表11</li>
+            <li>列表12</li>
+            <li>列表13</li>
+            <li>列表14</li>
+            <li>列表15</li>
+            <li>列表16</li>
+            <li>列表17</li>
+            <li>列表18</li>
+            <li>列表19</li>
+            <li>列表20</li>
+        </ul> -->
     </div>
 </template>
 
@@ -39,6 +51,8 @@
   import NavBar from 'components/common/navbar/NavBar'
   import TabControl from 'components/content/tabControl/TabControl'
   import GoodsList from   'components/content/goods/GoodsList'
+  import Scroll from 'components/common/scroll/Scroll'
+  import backTop from 'components/content/backTop/backTop'
 
   import HomeSwiper from './childCopmps/HomeSwiper'
   import RecommendView from './childCopmps/RecommendView'
@@ -47,17 +61,27 @@
   import {getHomeMultidata,getHomeGoods} from 'network/home'
 
 
+
     
 
 export default {
      name:"Home",  
+      data() {
+           return {
+            scroll:null     
+          }
+      },
      components: {
          NavBar,
          HomeSwiper,
          RecommendView,
          FeatureView,
          TabControl,
-         GoodsList
+         GoodsList,
+         Scroll,
+         backTop
+       
+         
 
      },
 
@@ -70,7 +94,8 @@ export default {
                 'news':{page:0,list:[1]},
                 'sell':{page:0,list:[1]},
             },
-            currentType: "pop"
+            currentType: "pop",
+            ISshow:false
          }
      },
       computed:{
@@ -103,7 +128,23 @@ export default {
                 break
             }
         },
+        backClick(){
+            // console.log(2222)
+            this.$refs.scroll.scrollTo(0,0,2000)
+        },
+        contentScroll(position){
+            // console.log(position);
+        this.ISshow = (-position.y) >500
 
+
+
+        },
+        loadMopre(){
+            console.log('上拉加载更多');
+            this.getHomeGoods(this.currentType)
+
+            // this.$refs.scroll.scroll.refresh()
+        },
         //  网路请求相关方法
          getHomeMultidata(){
               getHomeMultidata().then(res => {
@@ -117,6 +158,8 @@ export default {
             getHomeGoods(type,page).then(res => {
                 this.goods[type].list.push(...res.data.list)
                 this.goods[type].page += 1
+
+                this.$refs.scroll.finishPullup()
             })
          }
         }
@@ -127,6 +170,8 @@ export default {
 <style scoped>
     #home {
         padding-top: 44px;
+        height: 100vh;
+        position: relative;
     }   
  
     .nav-bar {
@@ -145,8 +190,24 @@ export default {
        position: sticky;
        top: 44px; 
        z-index: 9px;
-
-
    }
+    
+     .centent{
+    
+        overflow: hidden;
+        position: absolute;
+        top: 44px;
+        bottom: 49px;
+        left: 0;
+        right: 0;
+        /* background-color: antiquewhite; */
+    }
+
+   
+    /* .centent{
+        height: calc(100% - 93px);
+        overflow: hidden;
+       
+    } */
 
 </style>

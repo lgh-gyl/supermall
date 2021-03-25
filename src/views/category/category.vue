@@ -1,6 +1,12 @@
 <template>
-<div class="wrapper">
-    <ul class="content">
+   <scroll>
+       <div class="wrapper" ref="aaa">
+         <div>
+         <!-- 1.无论是否设置 click:false, button 都可以点击 -->
+        <button @click="btnclick"></button>
+        <!-- 2.必须设置click:true,那么div才能听到点击 -->
+        <div @click="divclick"></div>
+     <ul class="content">
     <li>分类列表1</li>
     <li>分类列表2</li>
     <li>分类列表3</li>
@@ -102,30 +108,21 @@
     <li>分类列表99</li>
     <li>分类列表100</li>
 
-    </ul>
+          </ul>
+         </div>
+    
 </div>
+   </scroll>
 </template>
 
 <script>
-  import BScroll from 'better-scroll'
+  
+  import Scroll from 'components/common/scroll/Scroll'
 
 export default {
     name:"Categoty",
-    data() {
-        return {
-            scroll:null
-        }
-    },
-    created(){
-
-   
-    },
-    mounted(){
-           console.log(this.$refs.aaa);
-           console.log(document.querySelector('.wrapper'));
-        this.scroll = new BScroll(document.querySelector('.wrapper'),{
-
-        })
+    components:{
+        Scroll
     }
 }
 </script>
