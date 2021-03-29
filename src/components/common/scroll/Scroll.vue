@@ -37,6 +37,8 @@ export default {
             probeType: this.probeType,
             pullUpLoad:this.pullUpLoad
         })
+
+        // console.log(this.scroll,22);
         // 2监听滚动的位置
         this.scroll.on('scroll', (position) =>{
             // console.log(position);
@@ -51,10 +53,17 @@ export default {
     },
     methods:{
         scrollTo(x, y, time=300){
-           this.scroll.scrollTo(0,0,time)
+        this.scroll &&  this.scroll.scrollTo(0,0,time)
         },
         finishPullup(){
-            this.scroll.finishPullup()
+         this.scroll  &&  this.scroll.finishPullup()
+        },
+        refresh(){
+            console.log('3-----')
+          this.scroll &&  this.scroll.refresh()
+        },
+        getScrollY() {
+            return this.scroll ? this.scroll.y : 0
         }
     }
 }

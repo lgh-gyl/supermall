@@ -7,7 +7,9 @@
         <div></div>
       </tab-bar-item>
     </tab-bar> -->
-    <router-view></router-view>
+    <keep-alive exclude="Detail">
+    <router-view/>
+    </keep-alive>
     <main-tab-bar/>
   </div>
 </template>

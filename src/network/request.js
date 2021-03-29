@@ -7,7 +7,7 @@ export function  request(config){
         baseURL:'http://123.207.32.32:8000',
         timeout: 5000
     })
-    console.log(axios.create,2222);
+    // console.log(axios.create,2222);
     //    2,axois 拦截器    //拦截请求  
   instance.interceptors.request.use(config =>{
 

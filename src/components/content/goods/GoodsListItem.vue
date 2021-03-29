@@ -1,6 +1,6 @@
 <template>
-    <div class="goods-item">
-        <img :src="goodsItem.show.img" alt="">
+    <div class="goods-item" @click="itemClick">
+        <img :src="goodsItem.show.img" alt="" @load="itemImageLoad">
         <div>
             <p>{{goodsItem.title}}</p>
             <span class="price">{{goodsItem.price}}</span>
@@ -18,7 +18,26 @@ export default {
              return {}
             }
         }
+    },
+    mounted:{
+        Imgload(){
+            this.$bus.$emit('itemImageLoad')
+        }
+    },
+    itemClick(){
+        console.log('跳转到详情页')
+        this.$router.push('/detail'+ this.goodsItem.iid)
+
+    //    query方法
+    //    this.$router.push({
+    //         path:'/detail',
+    //         query:{
+
+    //         }
+    //     })
+
     }
+
     
 }
 </script>
