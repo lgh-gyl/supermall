@@ -1,6 +1,6 @@
 <template>
     <div class="nav-bar">
-                             <!-- 具名插槽 -->
+                      <!-- 具名插槽 -->
         <div class="left"><slot name="left"></slot></div>
         <div class="center"><slot name="center"></slot></div>
         <div class="right"><slot name="right"></slot></div>
@@ -12,7 +12,7 @@
       name:'NarBar'
   }
   </script>
- 
+
    <style scoped>
 
       .nav-bar {
@@ -29,5 +29,4 @@
            flex: 1;
        }
 
-       
    </style>

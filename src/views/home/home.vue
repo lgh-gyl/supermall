@@ -1,5 +1,5 @@
 <template>
-    <div id="home" >
+    <div id="home">
          <nav-bar class="nav-bar"><div slot="center">购物街</div></nav-bar>
            <tab-control  
         :titles="['流行','新款','精选']"
@@ -246,7 +246,6 @@ export default {
    }
     
      .centent{
-    
         overflow: hidden;
         position: absolute;
         top: 44px;
