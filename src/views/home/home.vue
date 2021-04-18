@@ -135,7 +135,7 @@ export default {
           
      },
      mounted(){
-        // 1,图片记载 
+        // 1,图片记 载 
         const refresh =debounce(this.$refs.scroll.refresh,2000)
             //  监听商品数据
          this.$bus.$on('itemImageLoad',() =>{
@@ -146,9 +146,9 @@ export default {
      
     
      methods:{
-         /***
-          * 事件监听相关方法
-          * **/  
+ /***
+  * * 事件监听相关方法
+* **/  
         tabclick(index){
             switch(index){
                  case 0:
@@ -164,7 +164,7 @@ export default {
            this.$refs.tabControl1.currentIndex = index;
            this.$refs.tabControl2.currentIndex = index;
         },
-       // 设置滚动   
+       // 设置滚动    
         backClick(){
             // console.log(2222)
             this.$refs.scroll.scrollTo(0,0,2000)
@@ -189,14 +189,14 @@ export default {
         swiperimageload(){
                   // 获取tabControl的offsetTop
         // s所以的组件都有一个属性$el:用于获取组件中的元素
-    //    赋值
+        //    赋值
         this.taboffsetTop = this.$refs.tabControl2.$el.offsetTop;
 
         },   
 
 
 
-        //  网路请求相关方法
+//  网路请求相关方法
          getHomeMultidata(){
               getHomeMultidata().then(res => {
             //   console.log(res)
@@ -230,7 +230,6 @@ export default {
     background-color: var(--color-tint);
     /* font-weight: 700; */
     margin-top: -44px;
-
     color: #fff;
 /*     
     position: fixed;
